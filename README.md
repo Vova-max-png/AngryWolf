@@ -23,5 +23,5 @@ AngryWold <paths to files>
 ### Examples:
 
 ```
-AngryWolf ./text
+AngryWolf ./file
 ```
