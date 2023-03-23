@@ -1,15 +1,21 @@
 use clap::Parser;
 mod args;
 use args::*;
-use std::fs::{self, read_to_string};
+use core::panic;
+use std::{fs::{self, read_to_string}, io::ErrorKind};
 
 fn main() {
     let args = Args::parse();
-    for i in &args.path {
+    for i in args.path {
         let file = fs::read_to_string(i);
-        match file {
-            Err(e) => println!("{}", e),
-            _ => println!("{}", fs::read_to_string(i).unwrap())
-        }
+        let file = match file {
+            Ok(file) => file,
+            Err(e) => match e.kind() {
+                ErrorKind::PermissionDenied => "Permission denied!",
+                ErrorKind::NotFound => "File not found!",
+                _ => "Unknow error!",
+            }.to_owned(),
+        };
+        println!("{file}");
     }
 }
