@@ -1,5 +1,6 @@
 # Angry Wolf
 
+![version](https://img.shields.io/crates/v/AngryWolf)
 ![license](https://img.shields.io/github/license/Vova-max-png/AngryWolf?color=blue)
 
 Console utility to read files and output it into console
